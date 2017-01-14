@@ -26,9 +26,9 @@ services:
     image: mysql:5.7
     volumes:
       - "./config/db/sql:/docker-entrypoint-initdb.d"
-      - "./config/db/config/innodb.cnf:/etc/mysql/conf.d/innodb.cnf"
-      - "./config/db/config/utf-8.cnf:/etc/mysql/conf.d/utf-8.cnf"
-      - "./config/db/config/timezone.cnf:/etc/mysql/conf.d/timezone.cnf"
+      - "./config/db/mysql/innodb.cnf:/etc/mysql/conf.d/innodb.cnf"
+      - "./config/db/mysql/utf-8.cnf:/etc/mysql/conf.d/utf-8.cnf"
+      - "./config/db/mysql/timezone.cnf:/etc/mysql/conf.d/timezone.cnf"
     restart: always
     environment:
       MYSQL_ROOT_PASSWORD: %yPq#S5g9}JC)53m
