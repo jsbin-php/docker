@@ -15,7 +15,7 @@ services:
     #  - ./code/www:/var/www/html
     environment:
       STAGE: DEV
-      DB_PASSWORD: kGBZ5LH3hwpct
+      DB_PASSWORD: %yPq#S5g9}JC)53m
       DB_HOST: db
       DB_USER: root
       DB_NAME: jsbin
