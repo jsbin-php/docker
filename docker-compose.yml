@@ -1,0 +1,51 @@
+version: '2'
+services:
+  jsbin-php:
+    depends_on:
+      - db
+    links:
+      - db
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    ports:
+      - "80:80"
+      - "443:443"    
+    #volumes:
+    #  - ./code/www:/var/www/html
+    environment:
+      STAGE: DEV
+      DB_PASSWORD: kGBZ5LH3hwpct
+      DB_HOST: db
+      DB_USER: root
+      DB_NAME: jsbin
+    hostname: jbin.local
+    container_name: jsbin-php 
+
+  db:
+    image: mysql:5.7
+    volumes:
+      - "./config/db/sql:/docker-entrypoint-initdb.d"
+      - "./config/db/config/innodb.cnf:/etc/mysql/conf.d/innodb.cnf"
+      - "./config/db/config/utf-8.cnf:/etc/mysql/conf.d/utf-8.cnf"
+      - "./config/db/config/timezone.cnf:/etc/mysql/conf.d/timezone.cnf"
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: %yPq#S5g9}JC)53m
+      MYSQL_ROOT_HOST: '%'
+      MYSQL_USER: db-user
+      MYSQL_PASSWORD: >unB7*.m)\4BU*h}
+    container_name: MySQL
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    ports:
+      - "8080:80"
+    restart: always
+    links:
+      - db
+    environment:
+      PMA_ARBITRARY: 1
+      PHP_UPLOAD_MAX_FILESIZE: 1G
+      PHP_MAX_INPUT_VARS: 5000
+    container_name: phpMyAdmin    
